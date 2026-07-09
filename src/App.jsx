@@ -23,7 +23,7 @@ export default function App() {
 
   const fetchDayData = async () => {
     try {
-      const response = await fetch(`http://192.168.0.168:5000/api/data/${selectedDate}`);
+      const response = await fetch(`https://mealsaccountsek.onrender.com/api/data/${selectedDate}`);
       if (response.ok) {
         const data = await response.json();
         setDayData(data);
@@ -63,7 +63,7 @@ export default function App() {
     if (!activeName) return alert("Please select or enter a name.");
 
     try {
-      const res = await fetch('http://192.168.0.168:5000/api/meals', {
+      const res = await fetch('https://mealsaccountsek.onrender.com/api/meals', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: activeName, date: selectedDate, meals, isGuest })
@@ -84,7 +84,7 @@ export default function App() {
     if (!activeName || !noteText.trim()) return alert("Select your name and enter a message.");
 
     try {
-      const res = await fetch('http://192.168.0.168:5000/api/notes', {
+      const res = await fetch('https://mealsaccountsek.onrender.com/api/notes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: activeName, date: selectedDate, text: noteText })
@@ -113,7 +113,7 @@ export default function App() {
     if (!window.confirm(`Are you sure you want to permanently delete all recorded data for ${selectedDate}?`)) return;
 
     try {
-      const res = await fetch(`http://192.168.0.168:5000/api/data/${selectedDate}`, {
+      const res = await fetch(`https://mealsaccountsek.onrender.com/api/data/${selectedDate}`, {
         method: 'DELETE'
       });
       if (res.ok) {
